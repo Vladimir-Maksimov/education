@@ -1,0 +1,30 @@
+{% extends 'shop/base.html' %}
+
+{% block title %}Корзина{% endblock %}
+{% block header %}Корзина покупок{% endblock %}
+{% block text %}
+<form method="post" action="{% url 'cart' %}">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <th>Товар</th>
+            <th>Количество</th>
+            <th>Цена</th>
+        </tr>
+        {% for item in products %}
+        <tr>
+            <td>{{ item.product.name }}</td>
+            <td>
+                <input type="number" name="quantity_{{ forloop.counter }}" value="{{ item.quantity }}" min="0">
+                <input type="hidden" name="product_id_{{ forloop.counter }}" value="{{ item.product.id }}">
+            </td>
+            <td>{{ item.product.price }} руб.</td>
+            <td><button type="submit" name="update_quantity" value="{{ forloop.counter }}">Обновить</button></td>
+        </tr>
+        {% endfor %}
+    </table>
+</form>
+<h2>Общая стоимость: {{ total_price }} руб.</h2>
+<a href="{% url 'create_order' %}">Оформить заказ</a>
+{% endblock %}
+{% block button %}{% endblock %}

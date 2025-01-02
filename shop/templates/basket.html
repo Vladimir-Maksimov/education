@@ -1,0 +1,15 @@
+{% extends "shop/base.html" %}
+
+{% block title %}Корзина{% endblock %}
+{% block button_6 %}<li><a href="/logout">Выход</a></li>{% endblock %}
+{% block header %}Корзина покупок{% endblock %}
+<body>
+    <h2>Корзина</h2>
+    <ul>
+        {% for item in cart_items %}
+            <li>{{ item.name }} - {{ item.quantity }} шт. - {{ item.price }} руб.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url '/shop' %}">Продолжить покупки</a>
+</body>
+{% block button %}{% endblock %}

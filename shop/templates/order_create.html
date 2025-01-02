@@ -1,0 +1,21 @@
+{% extends 'shop/base.html' %}
+
+{% block title%}Оформление заказа{% endblock %}
+{% block text %}
+<h1>Оформление заказа</h1>
+<p>Сумма заказа: {{ total_price }} ₽</p>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    {% if form.delivery_method.value == 'pickup' %}
+        <input type="text" name="Адрес самовывоза" value="Московская обл., Раменский р-он, д. Островцы, ул. Подмосковная, д. 24">
+    {% else %}
+        <label for="id_DELIVERY_ADDRESS">Адрес доставки:</label>
+        <input type="text" id="id_DELIVERY_ADDRESS" name="DELIVERY_ADDRESS" required>
+    {% endif %}
+
+    <button type="submit">Оформить заказ</button>
+</form>
+{% endblock %}

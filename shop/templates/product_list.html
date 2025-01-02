@@ -1,0 +1,22 @@
+{% extends 'shop/base.html' %}
+
+{% block title%}Магазин{% endblock %}
+{% block button_5 %}<li><a href="/logout" class="nav-link px-2">Выйти</a></li>{% endblock %}
+{% block text %}
+    <h1>Список товаров</h1>
+    <div class="row">
+        {% for product in products %}
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">Цена: {{ product.price }} руб.</p>
+                        <p class="card-text">Количество: {{ product.quantity }}</p>
+                        <img class="fit-picture" src={{product.image}}>
+                        <a href="{% url 'product_detail' pk=product.pk %}" class="btn btn-primary">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

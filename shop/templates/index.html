@@ -1,0 +1,12 @@
+{% extends "shop/base.html" %}
+
+{% block title %}Главная страница{% endblock %}
+{% block button_5 %}{% endblock %}
+{% block button_6 %}<li><a href="/logout">Выход</a></li>{% endblock %}
+{% block header %}<h1>Добро пожаловать!</h1>{% endblock %}
+{% block text %}Это главная страница сайта{% endblock %}
+{% block button %}
+    <a class="btn btn-primary btn-lg px-4 gap-3" href="/product_list" role="button">{% block option %}Перейти в магазин{% endblock %}</a>
+{% endblock %}
+
+
